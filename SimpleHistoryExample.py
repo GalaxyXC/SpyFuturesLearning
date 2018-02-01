@@ -38,7 +38,7 @@ def parseCmdLine():
 
 def main():
     options = parseCmdLine()
-
+    security = "SPY US Equity"          # <<<<<<<<<<<<<<<<<<<<<<< EQUITY NAMES HERE
     # Fill SessionOptions
     sessionOptions = blpapi.SessionOptions()
     sessionOptions.setServerHost(options.host)
@@ -64,31 +64,40 @@ def main():
 
         # Create and fill the request for the historical data
         request = refDataService.createRequest("HistoricalDataRequest")
-        request.getElement("securities").appendValue("SPY US Equity")
-        request.getElement("fields").appendValue("PX_LAST")
+        request.getElement("securities").appendValue(security)
         request.getElement("fields").appendValue("OPEN")
-        #request.getElement("fields").appendValue("CLOSE")
-        #request.getElement("fields").appendValue("HIGH")
-        #request.getElement("fields").appendValue("LOW")
-        #request.getElement("fields").appendValue("VOLUME")
+        request.getElement("fields").appendValue("PX_LAST")
+        # request.getElement("fields").appendValue("CLOSE")
+        request.getElement("fields").appendValue("HIGH")
+        request.getElement("fields").appendValue("LOW")
+        request.getElement("fields").appendValue("VOLUME")
+
+        #request.getElement("fields").appendValue("INDX_MEMBERS")
+        
+
         request.set("periodicityAdjustment", "ACTUAL")
         request.set("periodicitySelection", "DAILY")
         request.set("startDate", "20060101")
-        request.set("endDate", "20061231")
-        request.set("maxDataPoints", 100)
+        request.set("endDate", "20171231")
+        request.set("maxDataPoints", 5000)
 
         print("Sending Request:", request)
         # Send the request
         session.sendRequest(request)
 
+
         # Process received events
+        filename = security + "_2006_2017.txt"
+        file = open(filename, "w") # change to 'a' for append
         while(True):
             # We provide timeout to give the chance for Ctrl+C handling:
             ev = session.nextEvent(500)
             for msg in ev:
-                print(msg)
+                file.write(str(msg))
+                # print(msg)
 
             if ev.eventType() == blpapi.Event.RESPONSE:
+                file.close()
                 # Response completly received, so we could exit
                 break
     finally:
