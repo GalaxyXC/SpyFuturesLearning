@@ -13,10 +13,13 @@ import FetchHistoricalMember
 
 if __name__ == "__main__":
     # Initialization
+    # bloomberg allows member list only started 19900131
     startDay = dt.date(2013,1,1)
     thisDay = startDay
-    # endDay = dt.date(1996,2,1)
     endDay = dt.date(2017,12,31)
+    # Done 20130101-20171231
+    # Done 19920101-20121231
+    # Done 19900101-19911231
 
     # a Set to store all Ticker ID
     tckList = set([])

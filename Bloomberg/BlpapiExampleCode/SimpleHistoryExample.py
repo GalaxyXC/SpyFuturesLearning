@@ -38,7 +38,7 @@ def parseCmdLine():
 
 def main():
     options = parseCmdLine()
-    security = "V US Equity"          # <<<<<<<<<<<<<<<<<<<<<<< EQUITY NAMES HERE
+    security = "SPY US Equity"          # <<<<<<<<<<<<<<<<<<<<<<< EQUITY NAMES HERE
     # Fill SessionOptions
     sessionOptions = blpapi.SessionOptions()
     sessionOptions.setServerHost(options.host)
@@ -65,12 +65,16 @@ def main():
         # Create and fill the request for the historical data
         request = refDataService.createRequest("HistoricalDataRequest")
         request.getElement("securities").appendValue(security)
-        #request.getElement("fields").appendValue("PX_LAST")
         request.getElement("fields").appendValue("OPEN")
-        request.getElement("fields").appendValue("CLOSE")
+        request.getElement("fields").appendValue("PX_LAST")
+        # request.getElement("fields").appendValue("CLOSE")
         request.getElement("fields").appendValue("HIGH")
         request.getElement("fields").appendValue("LOW")
         request.getElement("fields").appendValue("VOLUME")
+
+        #request.getElement("fields").appendValue("INDX_MEMBERS")
+        
+
         request.set("periodicityAdjustment", "ACTUAL")
         request.set("periodicitySelection", "DAILY")
         request.set("startDate", "20060101")
