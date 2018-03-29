@@ -53,3 +53,10 @@ Python-3.4.4 directory + codes: C:\Users\ld273\python34\Python-3.4.4
 Python path: C:\ProgramData\Anaconda3\python.exe
 
 Anaconda3: C:\Users\ld273\AppData\Local\Continuum\anaconda3
+
+
+
+
+
+Row/Obs: 365 x Years_train
+Col/Features: 500 x 5(OCHL+volume) x num. of intervals (e.g. day1-day9 predict day10)
