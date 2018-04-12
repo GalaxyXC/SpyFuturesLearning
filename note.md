@@ -1,8 +1,7 @@
 
 ## Data processing
 
-SPX Member Weights: cannot obtain from bloomberg - need pro account..
-
+SPX Member Weights: cannot obtain from bloomberg - need prof account
 Daily data: as early as 1986 (maybe earlier than this)
 
 Hi-Freq data/by minutes: within 140 days
